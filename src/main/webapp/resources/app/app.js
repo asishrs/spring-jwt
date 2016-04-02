@@ -9,7 +9,7 @@
         $routeProvider
             .when('/admin', {
                 controller: 'AdminController',
-                templateUrl: viewBase + 'admin/admin.html',
+                templateUrl: viewBase + 'admin.html',
                 controllerAs: 'adminVM'
             })
             .when('/about', {

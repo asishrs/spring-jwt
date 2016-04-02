@@ -18,7 +18,6 @@ import org.yagna.samples.jwt.filter.JWTTokenAuthFilter;
  */
 @Configuration
 @EnableWebSecurity
-@Order(1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private Logger LOG = LoggerFactory.getLogger(SecurityConfig.class);

@@ -16,6 +16,6 @@
         };
     };
 
-    angular.module('customersApp').animation('.card-animation', wcAnimations);
+    angular.module('jwtApp').animation('.card-animation', wcAnimations);
 
 }());
