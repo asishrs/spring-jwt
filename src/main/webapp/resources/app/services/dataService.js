@@ -1,6 +1,6 @@
 ﻿(function () {
 
-    var injectParams = ['config', 'customersService', 'customersBreezeService'];
+    var injectParams = ['config', 'customersService'];
 
     var dataService = function (config, customersService, customersBreezeService) {
         return (config.useBreeze) ? customersBreezeService : customersService;

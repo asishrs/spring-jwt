@@ -13,8 +13,13 @@ public class AdminConroller {
         return "WIP -Admin";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/login-1")
     public String login(){
         return "WIP -Login";
+    }
+
+    @RequestMapping(value = "/ping")
+    public String ping(){
+        return "I am up";
     }
 }

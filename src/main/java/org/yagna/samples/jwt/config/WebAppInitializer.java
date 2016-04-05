@@ -19,7 +19,6 @@ import javax.servlet.ServletRegistration;
 /**
  * Created by asish on 3/30/16.
  */
-@Order(2)
 public class WebAppInitializer implements WebApplicationInitializer {
 
     private Logger LOG = LoggerFactory.getLogger(WebAppInitializer.class);

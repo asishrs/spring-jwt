@@ -6,7 +6,7 @@
         var vm = this;
 
         vm.isCollapsed = false;
-        vm.appTitle = 'Customer Management';
+        vm.appTitle = 'Jason Web Token - POC';
 
         vm.highlight = function (path) {
             return $location.path().substr(0, path.length) === path;

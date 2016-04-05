@@ -1,28 +1,29 @@
 (function () {
 
     var app = angular.module('jwtApp',
-        ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
+        ['ngRoute', 'ngAnimate', 'wc.directives', 'ui.bootstrap']);
 
     app.config(['$routeProvider', function ($routeProvider) {
-        var viewBase = '/app/jwtapp/views/';
+        var viewBase = '/spring-jwt/';
 
         $routeProvider
-            .when('/admin', {
-                controller: 'AdminController',
-                templateUrl: viewBase + 'admin.html',
-                controllerAs: 'adminVM'
+            .when('/profile', {
+                controller: 'ProfileController',
+                templateUrl: viewBase + 'profile.html',
+                controllerAs: 'vm',
+                secure: true
             })
             .when('/about', {
                 controller: 'AboutController',
                 templateUrl: viewBase + 'about.html',
-                controllerAs: 'aboutVM'
+                controllerAs: 'vm'
             })
             .when('/login/:redirect*?', {
                 controller: 'LoginController',
                 templateUrl: viewBase + 'login.html',
-                controllerAs: 'loginVM'
+                controllerAs: 'vm'
             })
-            .otherwise({ redirectTo: '/admin' });
+            .otherwise({ redirectTo: '/about' });
 
     }]);
 

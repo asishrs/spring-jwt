@@ -29,6 +29,7 @@
     <logback.version>1.1.2</logback.version>
     <jee.version>7.0</jee.version>
     <servletApi.version>6.1.11</servletApi.version>
+    <!--<apacheCommonIO.version>2.4</apacheCommonIO.version>-->
     <apacheCommonLang.version>2.6</apacheCommonLang.version>
     <apacheCodec.version>1.9</apacheCodec.version>
   </properties>
@@ -106,6 +107,12 @@
       <version>${apacheCommonLang.version}</version>
     </dependency>
 
+    <!--<dependency>-->
+      <!--<groupId>commons-io</groupId>-->
+      <!--<artifactId>commons-io</artifactId>-->
+      <!--<version>${apacheCommonIO.version}</version>-->
+    <!--</dependency>-->
+
 
     <!-- Apache Codec -->
     <dependency>
@@ -170,6 +177,12 @@
           </httpConnector>
           <webAppConfig>
             <contextPath>/${project.artifactId}</contextPath>
+            <sessionHandler implementation="org.eclipse.jetty.server.session.SessionHandler">
+              <sessionManager implementation="org.eclipse.jetty.server.session.HashSessionManager">
+                <!-- Disable url sessions using JSessionID -->
+                <sessionIdPathParameterName>none</sessionIdPathParameterName>
+              </sessionManager>
+            </sessionHandler>
           </webAppConfig>
         </configuration>
       </plugin>

@@ -3,7 +3,7 @@
     var injectParams = ['$http', '$rootScope'];
 
     var authFactory = function ($http, $rootScope) {
-        var serviceBase = '/api/dataservice/',
+        var serviceBase = '/spring-jwt/api/',
             factory = {
                 loginPath: '/login',
                 user: {
@@ -13,9 +13,9 @@
             };
 
         factory.login = function (email, password) {
-            return $http.post(serviceBase + 'login', { userLogin: { userName: email, password: password } }).then(
-                function (results) {
-                    var loggedIn = results.data.status;;
+            return $http.post(serviceBase + 'login', {"userName": email, "password": password }).then(
+                function (httpResponse) {
+                    var loggedIn = httpResponse.data.status;;
                     changeAuth(loggedIn);
                     return loggedIn;
                 });
