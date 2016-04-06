@@ -2,8 +2,6 @@ package org.yagna.samples.jwt.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Import;
-import org.springframework.core.annotation.Order;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
@@ -21,7 +19,7 @@ import javax.servlet.ServletRegistration;
  */
 public class WebAppInitializer implements WebApplicationInitializer {
 
-    private Logger LOG = LoggerFactory.getLogger(WebAppInitializer.class);
+    private Logger LOG = LoggerFactory.getLogger(this.getClass());
 
     public void onStartup(ServletContext servletContext) throws ServletException {
         WebApplicationContext rootContext = getContext();

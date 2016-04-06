@@ -1,8 +1,8 @@
 ﻿(function () {
 
-    var injectParams = ['$http', '$rootScope'];
+    var injectParams = ['$http', '$rootScope', '$cookieStore'];
 
-    var authFactory = function ($http, $rootScope) {
+    var authFactory = function ($http, $rootScope, $cookieStore) {
         var serviceBase = '/spring-jwt/api/',
             factory = {
                 loginPath: '/login',
@@ -15,7 +15,8 @@
         factory.login = function (email, password) {
             return $http.post(serviceBase + 'login', {"userName": email, "password": password }).then(
                 function (httpResponse) {
-                    var loggedIn = httpResponse.data.status;;
+                    $cookieStore.put("token", httpResponse.headers('X-AUTH-TOKEN'));
+                    var loggedIn = httpResponse.data.status;
                     changeAuth(loggedIn);
                     return loggedIn;
                 });

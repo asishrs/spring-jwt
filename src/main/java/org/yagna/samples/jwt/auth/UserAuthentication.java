@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.User;
 public class UserAuthentication implements Authentication {
 
     private final User user;
+
     private boolean authenticated = true;
 
     public UserAuthentication(User user) {

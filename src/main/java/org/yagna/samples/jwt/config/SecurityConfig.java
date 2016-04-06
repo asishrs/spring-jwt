@@ -5,22 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.*;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.yagna.samples.jwt.filter.JWTTokenAuthFilter;
 import org.yagna.samples.jwt.filter.StatelessAuthenticationFilter;
 import org.yagna.samples.jwt.service.TokenAuthenticationService;
 import org.yagna.samples.jwt.service.UserService;
-
-import java.util.List;
 
 
 /**
@@ -30,7 +24,7 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private Logger LOG = LoggerFactory.getLogger(SecurityConfig.class);
+    private Logger LOG = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private UserService userService;
@@ -40,34 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public SecurityConfig() {
         super(true);
-//        this.userService = new UserService();
-//        tokenAuthenticationService = new TokenAuthenticationService("tooManySecrets", userService);
     }
-
-    //    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        LOG.debug("****************** Inside security configureGlobal");
-//        auth
-//            .inMemoryAuthentication()
-//                .withUser("user@test.com")  // #1
-//                    .password("test123")
-//                    .roles("USER")
-//                    .and()
-//                .withUser("admin@test.com") // #2
-//                    .password("test123")
-//                    .roles("ADMIN","USER");
-//    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         LOG.debug("****************** Inside security configure");
-
-//        http
-//                .httpBasic().and().authorizeRequests()
-//                .antMatchers("/api/login","/ping","/resources/**","/**").permitAll() // #4
-//                .antMatchers("/api/**", "/profile.html").authenticated()// 7
-//                .and()
-//                .csrf().disable();
 
         http
             .exceptionHandling().and()
@@ -114,8 +85,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return userService;
     }
 
-//    @Bean
-//    public TokenAuthenticationService tokenAuthenticationService() {
-//        return tokenAuthenticationService;
-//    }
 }

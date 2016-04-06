@@ -17,14 +17,10 @@ public class UserService implements UserDetailsService {
     private final AccountStatusUserDetailsChecker detailsChecker = new AccountStatusUserDetailsChecker();
     private final HashMap<String, User> userMap = new HashMap<String, User>();
 
-//    static {
-//        userMap.put("asishrs@gmail.com", "qwerty")
-//    }
-
     public final User loadUserByUsername(String username) throws UsernameNotFoundException {
         final User user = userMap.get(username);
         if (user == null) {
-            throw new UsernameNotFoundException("user not found");
+            throw new UsernameNotFoundException("User not found");
         }
         detailsChecker.check(user);
         return user;

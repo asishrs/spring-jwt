@@ -1,7 +1,7 @@
 (function () {
 
     var app = angular.module('jwtApp',
-        ['ngRoute', 'ngAnimate', 'wc.directives', 'ui.bootstrap']);
+        ['ngRoute', 'ngAnimate', 'ngCookies', 'wc.directives', 'ui.bootstrap']);
 
     app.config(['$routeProvider', function ($routeProvider) {
         var viewBase = '/spring-jwt/';

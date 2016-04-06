@@ -2,13 +2,13 @@ package org.yagna.samples.jwt.auth;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import org.yagna.samples.jwt.service.UserService;
-
-import javax.annotation.PostConstruct;
 
 /**
  * Created by asish on 4/4/16.
@@ -16,16 +16,13 @@ import javax.annotation.PostConstruct;
 @Component
 public final class TokenHandler {
 
+    private Logger LOG = LoggerFactory.getLogger(this.getClass());
+
     @Value("${secret}")
     private String secret;
 
     @Autowired
     private UserService userService;
-
-//    public TokenHandler(String secret, UserService userService) {
-//        this.secret = secret;
-//        this.userService = userService;
-//    }
 
     public User parseUserFromToken(String token) {
         String username = Jwts.parser()
@@ -33,6 +30,7 @@ public final class TokenHandler {
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
+        LOG.info("User {} is accessing app.", username);
         return userService.loadUserByUsername(username);
     }
 

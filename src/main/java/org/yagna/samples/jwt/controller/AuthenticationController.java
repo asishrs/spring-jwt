@@ -15,6 +15,7 @@ import org.yagna.samples.jwt.auth.UserAuthentication;
 import org.yagna.samples.jwt.model.AuthStatus;
 import org.yagna.samples.jwt.model.UserLogin;
 import org.yagna.samples.jwt.service.TokenAuthenticationService;
+import org.yagna.samples.jwt.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,20 +29,22 @@ import java.util.List;
 @RestController
 public class AuthenticationController {
 
-    private Logger LOG = LoggerFactory.getLogger(AuthenticationController.class);
+    private Logger LOG = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private TokenAuthenticationService tokenAuthenticationService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value="/api/login", method= RequestMethod.POST)
     public AuthStatus login(HttpServletResponse response, @RequestBody UserLogin userLogin) throws IOException {
-
-//        User activeUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        LOG.info("UserLogin - {}, Authenticated User - {}", userLogin);
+        LOG.info("User trying to Login - {}", userLogin);
         List<GrantedAuthority> roles =  new ArrayList<GrantedAuthority>();
         User user = new User(userLogin.getUserName(), userLogin.getPassword(), roles);
         UserAuthentication userAuthentication = new UserAuthentication(user);
         tokenAuthenticationService.addAuthentication(response, userAuthentication);
+        userService.addUser(user);
         return new AuthStatus("true");
     }
 }

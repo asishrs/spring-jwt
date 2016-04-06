@@ -27,7 +27,7 @@ import java.util.List;
 @PropertySource(value = { "classpath:application.properties" })
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
-    private Logger LOG = LoggerFactory.getLogger(WebMvcConfig.class);
+    private Logger LOG = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -42,8 +42,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/about.html").setViewName("views/about.html");
         registry.addViewController("/profile.html").setViewName("views/profile.html");
         registry.addViewController("/login.html").setViewName("views/login.html");
-//        registry.addViewController("/spring-jwt/test").setViewName("/resources/test.html");
-//        registry.addViewController("/admin").setViewName("views/admin.html");
     }
 
     @Bean

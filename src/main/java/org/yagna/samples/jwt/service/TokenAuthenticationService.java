@@ -22,19 +22,15 @@ public class TokenAuthenticationService {
     @Autowired
     private TokenHandler tokenHandler;
 
-//    public TokenAuthenticationService(String secret, UserService userService) {
-//        tokenHandler = new TokenHandler(secret, userService);
-//    }
-
     public void addAuthentication(HttpServletResponse response, UserAuthentication authentication) {
         final User user = authentication.getDetails();
-        response.addHeader(AUTH_HEADER_NAME, tokenHandler.createTokenForUser(user));
+        response.addHeader(AUTH_HEADER_NAME, this.tokenHandler.createTokenForUser(user));
     }
 
     public Authentication getAuthentication(HttpServletRequest request) {
         final String token = request.getHeader(AUTH_HEADER_NAME);
         if (token != null) {
-            final User user = tokenHandler.parseUserFromToken(token);
+            final User user = this.tokenHandler.parseUserFromToken(token);
             if (user != null) {
                 return new UserAuthentication(user);
             }

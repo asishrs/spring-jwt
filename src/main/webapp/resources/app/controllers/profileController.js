@@ -1,8 +1,8 @@
 (function () {
 
-    var injectParams = ['profileService'];
+    var injectParams = ['profileService', '$timeout'];
 
-    var ProfileController = function (profileService) {
+    var ProfileController = function (profileService, $timeout) {
 
         var vm = this;
 
@@ -14,7 +14,6 @@
             profileService.getProfileById(id)
                 .then(function (data) {
                     vm.profile = data;
-                    console.log("Profile is " + profile);
                     $timeout(function () {
                         vm.cardAnimationClass = ''; //Turn off animation since it won't keep up with filtering
                     }, 1000);

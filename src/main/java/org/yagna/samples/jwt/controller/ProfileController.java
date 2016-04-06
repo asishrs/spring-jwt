@@ -14,7 +14,7 @@ import org.yagna.samples.jwt.model.Profile;
 @RestController
 public class ProfileController {
 
-    private Logger LOG = LoggerFactory.getLogger(ProfileController.class);
+    private Logger LOG = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/api/profile/get/{id}", method = RequestMethod.GET)
     public Profile getProfile(@PathVariable("id") int id) {
