@@ -23,8 +23,9 @@
         };
 
         factory.logout = function () {
-            return $http.post(serviceBase + 'logout').then(
+            return $http.get(serviceBase + 'logout').then(
                 function (results) {
+                    $cookieStore.remove("token");
                     var loggedIn = !results.data.status;
                     changeAuth(loggedIn);
                     return loggedIn;
