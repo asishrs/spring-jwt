@@ -19,7 +19,7 @@
     <jee.version>7.0</jee.version>
     <servletApi.version>6.1.11</servletApi.version>
     <apacheCommonLang.version>2.6</apacheCommonLang.version>
-    <apacheCodec.version>1.13</apacheCodec.version>
+    <apacheCodec.version>1.14</apacheCodec.version>
   </properties>
 
   <dependencies>
